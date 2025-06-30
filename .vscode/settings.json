@@ -1,5 +1,21 @@
 {
-    "go.toolsEnvVars": {
-        "GOPLS_EXCLUDE_PATH": "**/**/wire_gen.go"
+  "go.toolsEnvVars": {
+    "GOPLS_EXCLUDE_PATH": "**/**/wire_gen.go"
+  },
+"http.proxy": "http://127.0.0.1:7897",
+  "gopls": {
+    "build.directoryFilters": ["-./.git", "-**/node_modules"],
+    "ui.semanticTokens": true,
+    "completeUnimported": false,
+    "ui.completion.experimentalPostfixCompletions": false
+  },
+  "go.useLanguageServer": true, 
+
+  "go.inferGopath": true,
+  "[go]": {
+    "editor.formatOnSave": true,
+    "editor.codeActionsOnSave": {
+      "source.organizeImports": "always"
     }
+  }
 }

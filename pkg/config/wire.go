@@ -1,6 +1,6 @@
 package config
 
-func ProvideDbConfig() DbConfig {
+func ProvideDbConfig() DatabseConfig {
 	return Cfg.DB
 }
 func ProvideLogConfig() LogConfig {

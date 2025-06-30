@@ -10,9 +10,9 @@ import (
 	"goddd/internal/application"
 	"goddd/internal/infra/database"
 	"goddd/internal/infra/logger"
+	"goddd/internal/infra/repository"
 	"goddd/internal/ports/http"
 	"goddd/internal/ports/http/v0/handler"
-	"goddd/internal/repository"
 	"goddd/pkg/config"
 )
 
@@ -24,7 +24,7 @@ func InitializeApp() *http.App {
 	db := database.NewDB(appConfig)
 	bookRepository := repository.NewBookRepository(db)
 	bookService := application.NewBookService(bookRepository)
-	bookHandler := handler.NewBookHandler(bookService)
+	bookHandler := handler.NewBookHandler(bookService, slogLogger)
 	v := http.ProvideV0Routers(bookHandler)
 	app := http.NewApp(slogLogger, appConfig, v...)
 	return app

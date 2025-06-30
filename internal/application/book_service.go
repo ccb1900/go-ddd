@@ -3,7 +3,7 @@ package application
 import (
 	"context"
 	"goddd/internal/ports/http/v0/dto"
-	"goddd/internal/repository"
+	"goddd/internal/infra/repository"
 )
 
 type BookService struct {

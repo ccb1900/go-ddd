@@ -8,8 +8,8 @@ vars:
 tasks:
   default:
     cmds:
-      - echo "{{.GREETING}}"
-    silent: true
+      - go tool goreleaser release --snapshot --clean
+    silent: false
   wire:
     cmds:
       - cd internal/infra/di && wire

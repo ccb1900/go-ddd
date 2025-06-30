@@ -7,8 +7,8 @@ import (
 	"goddd/pkg/config"
 )
 
-func main()  {
-	config.Init(".")
+func main() {
+	config.Init("config")
 	fmt.Println("hello world")
 	app := di.InitializeApp()
 

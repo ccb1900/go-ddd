@@ -3,7 +3,7 @@
 
 package di
 
-//go:generate wire
+//go:generate go tool wire
 
 // go:build wireinject
 
@@ -15,16 +15,14 @@ import (
 	"goddd/internal/infra/logger"
 	"goddd/internal/ports/http"
 	"goddd/internal/ports/http/v0/handler"
-	"goddd/internal/repository"
+	"goddd/internal/infra/repository"
 	"goddd/pkg/config"
 
 	"github.com/google/wire"
 )
 
-
-
 func InitializeApp() *http.App {
-    wire.Build(
+	wire.Build(
 		config.ProvideConfig,
 		database.NewDB,
 		logger.NewLogger,
@@ -33,7 +31,6 @@ func InitializeApp() *http.App {
 		handler.NewBookHandler,
 		http.ProvideV0Routers,
 		http.NewApp,
-
 	) // 声明依赖关系
-    return nil // 返回值无实际意义
+	return nil // 返回值无实际意义
 }

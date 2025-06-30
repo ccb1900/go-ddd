@@ -23,12 +23,11 @@ type IRegisterRoute interface {
 	RegisterRoutes(*gin.RouterGroup)
 }
 
-
 type App struct {
-	Router *gin.Engine
+	Router   *gin.Engine
 	handlers []IRegisterRoute
-	logger *slog.Logger
-	config config.AppConfig
+	logger   *slog.Logger
+	config   config.AppConfig
 }
 
 func NewApp(
@@ -37,18 +36,19 @@ func NewApp(
 	handlers ...IRegisterRoute,
 ) *App {
 	g := gin.New()
-	
+
 	for i := 0; i < len(handlers); i++ {
 		handlers[i].RegisterRoutes(g.Group("/v0"))
 	}
 	app := &App{
 		Router: g,
-		logger:logger,
+		logger: logger,
 		config: config,
 	}
 	return app
 }
 
-func (app *App)Run(ctx context.Context) {
+func (app *App) Run(ctx context.Context) {
+	app.logger.WithGroup("app").Info("app start")
 	app.Router.Run()
 }

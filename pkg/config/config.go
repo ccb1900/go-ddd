@@ -10,9 +10,10 @@ import (
 var Cfg AppConfig
 var cfgOnce sync.Once
 
-func Init(path string) {
+func Init(name string) {
 	cfgOnce.Do(func() {
-		viper.SetConfigFile(path)
+		viper.AddConfigPath(".")
+		viper.SetConfigName(name + ".dev")
 		viper.SetConfigType("yaml")
 
 		if err := viper.ReadInConfig(); err != nil {
@@ -23,7 +24,7 @@ func Init(path string) {
 			log.Fatalf("unmarshal config error: %v", err)
 		}
 
-		log.Println("config loaded:", path)
+		log.Println("config loaded:", name)
 	})
 
 }

@@ -1,5 +1,0 @@
-{
-    "go.toolsEnvVars": {
-        "GOPLS_EXCLUDE_PATH": "**/**/wire_gen.go"
-    }
-}
