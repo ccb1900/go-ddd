@@ -2,20 +2,20 @@ package application
 
 import (
 	"context"
+	"goddd/internal/domain"
 	"goddd/internal/ports/http/v0/dto"
-	"goddd/internal/infra/repository"
 )
 
 type BookService struct {
-	repo *repository.BookRepository
+	repo domain.IBookRepo
 }
 
-func NewBookService(r *repository.BookRepository) *BookService {
+func NewBookService(r domain.IBookRepo) *BookService {
 	return &BookService{
 		repo: r,
 	}
 }
 
-func (s *BookService) CreateBook(ctx context.Context, dto *dto.CreateBookRequest) (*dto.CreateBookResponse,error) {
-    return nil,nil
+func (s *BookService) CreateBook(ctx context.Context, dto *dto.CreateBookRequest) (*dto.CreateBookResponse, error) {
+	return nil, nil
 }

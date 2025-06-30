@@ -1,21 +1,19 @@
-//go:build wireinject
+// go:build wireinject
 // +build wireinject
-
-package di
 
 //go:generate go tool wire
 
-// go:build wireinject
-
 // internal/infra/di/wire.go
+package di
 
 import (
 	"goddd/internal/application"
+	"goddd/internal/domain"
 	"goddd/internal/infra/database"
 	"goddd/internal/infra/logger"
+	"goddd/internal/infra/repository"
 	"goddd/internal/ports/http"
 	"goddd/internal/ports/http/v0/handler"
-	"goddd/internal/infra/repository"
 	"goddd/pkg/config"
 
 	"github.com/google/wire"
@@ -24,6 +22,7 @@ import (
 func InitializeApp() *http.App {
 	wire.Build(
 		config.ProvideConfig,
+		wire.Bind(new(domain.IBookRepo), new(*repository.BookRepository)),
 		database.NewDB,
 		logger.NewLogger,
 		repository.NewBookRepository,
