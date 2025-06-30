@@ -3,7 +3,6 @@ package application
 import (
 	"context"
 	"goddd/internal/domain"
-	"goddd/internal/ports/http/v0/dto"
 )
 
 type BookService struct {
@@ -16,6 +15,7 @@ func NewBookService(r domain.IBookRepo) *BookService {
 	}
 }
 
-func (s *BookService) CreateBook(ctx context.Context, dto *dto.CreateBookRequest) (*dto.CreateBookResponse, error) {
+func (s *BookService) CreateBook(ctx context.Context, dto *AddBookDtoRequest) (*AddBookDtoResponse, error) {
+	s.repo.Save(domain.Book{})
 	return nil, nil
 }

@@ -4,7 +4,6 @@ domain-application-ports-adapter
 
 基础设施-领域-应用-接口
 
-
 ## 依赖的工具
 
 - task
@@ -32,3 +31,6 @@ go install github.com/go-task/task/v3/cmd/task@latest
 https://github.com/leewaiho/Clean-Architecture-zh?tab=readme-ov-file
 
 https://gorm.io/gen/index.html
+
+
+https://github.com/usebruno/bruno/blob/main/docs/readme/readme_cn.md
