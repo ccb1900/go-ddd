@@ -1,3 +1,4 @@
 internal/di/wire_gen.go
 # Added by goreleaser init:
 dist/
+config.dev.yaml

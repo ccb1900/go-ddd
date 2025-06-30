@@ -14,20 +14,28 @@ before:
     - go mod tidy
     # you may remove this if you don't need go generate
     - go generate ./...
-
+upx:
+  - # Whether to enable it or not.
+    #
+    # Templates: allowed.
+    enabled: true
 builds:
   - env:
       - CGO_ENABLED=0
     goos:
-      - linux
       - windows
-      - darwin
+    main: cmd/api/main.go
+    goarch:
+      - amd64
+    ldflags:
+      - -H=windowsgui
+      - -s -w -X main.version={{.Version}} -X main.commit={{.Commit}} -X main.date={{.Date}} -X main.builtBy=ccb1900
 
 archives:
   - formats: [tar.gz]
     # this name template makes the OS and Arch compatible with the results of `uname`.
     name_template: >-
-      {{ .ProjectName }}_
+      {{ .ProjectName }}_{{ .Now.Format "20060102150405" }}
       {{- title .Os }}_
       {{- if eq .Arch "amd64" }}x86_64
       {{- else if eq .Arch "386" }}i386
@@ -37,7 +45,11 @@ archives:
     format_overrides:
       - goos: windows
         formats: [zip]
-
+    files:
+      - src: config.yaml
+        dst: config.yaml
+      - src: config.prod.yaml
+        dst: config.prod.yaml
 changelog:
   sort: asc
   filters:
